@@ -1,0 +1,57 @@
+1) Order of execution in SQL
+-----------------------------
+FROM 
+JOIN
+WHERE 
+GROUP BY 
+HAVING
+SELECT 
+ORDER BY
+LIMIT
+
+
+
+2) Delete duplicate records from sql:
+======================================
+solution 1:
+//minimum id wala rakh lo aur uske alwa jitna h usko delete krdo duplicate walo ko 
+
+delete from artists
+where id not in (
+SELECT min(id)
+FROM artists 
+group by first_name,last_name
+);
+
+solution 2: by using window functions we can also do 
+
+
+
+3) JOINS IN SQL
+================
+a) inner join : it joins two tables and fetches out matching records in both tables
+b) left join : it joins two tables and fetches out matching records in both tables + non matching records from left tables also 
+c) right join : it joins two tables and fetches out matching records in both tables + non matching records from right table also 
+d) full outer join : it joins two tables and fetches out matching records in both the tables + non matching records from left table + non matching records from right table
+
+
+
+4) Diff between Cross Join and Natural Join
+--------------------------------------------
+
+Cross join is basically a cartesian product that output will number of rows in left table * number of rows in right table
+
+Here we use the key word cross join like below 
+
+Select * 
+FROM table1 t1 cross join table2 t2 ;
+
+
+In natural Join it basically naturally joins both the table based on column having same name in both the tables that is it internally does inner join based on identical columns and if the column names does not match then it will simply do cross join 
+
+Here we use the NATURAL join as name and we do not define the condition just like cross join 
+
+Select * 
+FROM table1 t1 NATURAL JOIN table2 t2;
+
+Note: Natural Join is not at all recomened in production scenarios as if someone changes the column name then natural join will behave differntly which we do not want 
